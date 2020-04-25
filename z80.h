@@ -14,17 +14,27 @@ typedef union
     uint8_t r1;
     uint8_t r2;
     uint16_t rr;
-} register;
+} z80_register;
 
 typedef struct z80_info_s 
 {
-    register m_regs[8];
+    z80_register m_regs[8];
     uint16_t m_pc;
     uint16_t m_sp;
     uint8_t m_index[2];
-} cpu_info;
 
-#include "z80.h"
+    struct {
+        int c:1;
+        int n:1;
+        int pv:1;
+        int h:1;
+        int z:1;
+        int s:1;
+        int unused1:1;
+        int unused2:1;
+    } flags;
+    
+} z80_info_s;
 
 #define A z80.m_regs[0].r1
 #define F z80.m_regs[0].r2
@@ -55,3 +65,4 @@ typedef struct z80_info_s
 #define SP z80.m_sp
 #define IX z80.m_index[0]
 #define IY z80.m_index[1]
+
