@@ -36,8 +36,6 @@ int emulation (int opcode)
         //execute
 }   
 
-
-
 int main(){
 
     memory[0] = 0x01;
