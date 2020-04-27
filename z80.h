@@ -1,3 +1,4 @@
+#pragma once
 /*
     This is main header of the z80 emulator. This file contains
     most of data structures used in this project
@@ -36,6 +37,8 @@ typedef struct z80_info_s
     
 } z80_info_s;
 
+z80_info_s z80;
+
 #define A z80.m_regs[0].r1
 #define F z80.m_regs[0].r2
 #define AF z80.m_regs[0].rr
@@ -66,3 +69,4 @@ typedef struct z80_info_s
 #define IX z80.m_index[0]
 #define IY z80.m_index[1]
 
+uint8_t memory[32768];

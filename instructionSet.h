@@ -1,3 +1,4 @@
+#pragma once
 #include <string.h>
 
 #include "z80.h"
@@ -9,7 +10,7 @@
     Block Transfer and Search; Jump; Call; Return; Input/Output; Basic CPU Control
 */
 
-typedef enum {
+typedef enum op_code{
 
     nop = 0x00,
     ld_bc_xx = 0x01,
@@ -32,4 +33,6 @@ typedef enum {
     ld_de_a = 0x12,
     inc_de = 0x13,
     add_a_b = 0x80
-} OpCode;
+} op_code;
+
+int fetch(z80_info_s *status, op_code opcode);
