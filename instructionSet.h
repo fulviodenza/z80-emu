@@ -1,5 +1,6 @@
 #pragma once
 #include <string.h>
+#include <limits.h>
 
 #include "z80.h"
 /*
