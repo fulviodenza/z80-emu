@@ -13,17 +13,17 @@
 
 typedef enum op_code{
 
-    nop = 0x00,
-    ld_bc_xx = 0x01,
-    ld_bc_a = 0x02,
-    inc_bc = 0x03,
-    inc_b = 0x04,
-    dec_b = 0x05,
-    ld_b_x = 0x06,
-    rlca = 0x07,
-    ex_af_af1 = 0x08,
-    add_hl_bc = 0x09,
-    ld_a_bc = 0x0A,
+    nop = 0x00, //done
+    ld_bc_xx = 0x01, //done
+    ld_bc_a = 0x02, //done
+    inc_bc = 0x03, //done
+    inc_b = 0x04, //done
+    dec_b = 0x05, //done
+    ld_b_x = 0x06, //done
+    rlca = 0x07, //done
+    ex_af_af1 = 0x08, //done
+    add_hl_bc = 0x09, //done
+    ld_a_bc = 0x0A, //done
     dec_bc = 0x0B,
     inc_c = 0x0C,
     dec_c = 0x0D,
