@@ -23,6 +23,7 @@ typedef struct z80_info_s
     uint16_t m_pc;
     uint16_t m_sp;
     uint8_t m_index[2];
+    int elapsed_cycles;
 
     struct {
         int c:1;

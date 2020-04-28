@@ -15,12 +15,14 @@ int fetch(z80_info_s *status, op_code opcode)
     switch(memory[status->m_pc++]) { //switch memory[m_pc]
 
         case nop:
+        status->elapsed_cycles+=4;
         break;
         case ld_bc_xx:
         temp = memory[status->m_pc++];
         temp<<=8;
         temp = temp | memory[status->m_pc++];
         BC = temp;
+        status->elapsed_cycles+=10;
     }
 }
 
@@ -28,6 +30,7 @@ int emulation (int opcode)
 {
     int pc = status.m_pc;
     status.m_pc = 0;
+    status.elapsed_cycles = 0;
     status.m_sp = 32767;
     
     //while(1)
