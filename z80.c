@@ -19,11 +19,10 @@ int fetch(z80_info_s *status, op_code opcode)
         /**
          * nop does absoluterly nothing
         */
-        //status->elapsed_cycles+=4;
+        status->elapsed_cycles+=4;
         break;
 
         case ld_bc_xx:
-        printf("Ciao");
         /**
          * ld_bc_xx stores xx 
          * (16 bit register) into BC
@@ -33,7 +32,8 @@ int fetch(z80_info_s *status, op_code opcode)
         temp = temp | memory[status->m_pc++];
         BC = temp;
         status->elapsed_cycles+=10;
-
+        break;
+        
         case ld_bc_a:
         /**
          * ld_bc_a stores a into the memory 
@@ -41,6 +41,7 @@ int fetch(z80_info_s *status, op_code opcode)
         */
         *(&BC) = A;
         status->elapsed_cycles += 7;
+        break;
 
         case inc_bc:
         /**
@@ -48,6 +49,7 @@ int fetch(z80_info_s *status, op_code opcode)
         */
         BC++;
         status->elapsed_cycles += 6;
+        break;
 
         case inc_b:
         /**
@@ -59,6 +61,7 @@ int fetch(z80_info_s *status, op_code opcode)
         }
         B++;        
         status->elapsed_cycles += 4;
+        break;
 
         case dec_b:
         /**
@@ -70,6 +73,7 @@ int fetch(z80_info_s *status, op_code opcode)
         }
         B--;
         status->elapsed_cycles += 4;
+        break;
 
         case ld_b_x:
         /**
@@ -78,6 +82,7 @@ int fetch(z80_info_s *status, op_code opcode)
         temp = memory[status->m_pc++];
         B = temp;
         status->elapsed_cycles += 7;
+        break;
 
         case rlca:
         /**
@@ -93,6 +98,7 @@ int fetch(z80_info_s *status, op_code opcode)
         //rotation
         A = shifted | status->flags.c;
         status->elapsed_cycles += 4;
+        break;
 
         case ex_af_af1:
         /**
@@ -103,6 +109,7 @@ int fetch(z80_info_s *status, op_code opcode)
         AF = AF1;
         AF1 = temp;
         status->elapsed_cycles += 4;
+        break;
         
         case add_hl_bc:
         /**
@@ -117,6 +124,7 @@ int fetch(z80_info_s *status, op_code opcode)
         //HALF CARRY TO IMPLEMENT
         HL += BC;
         status->elapsed_cycles += 11;
+        break;
 
         case ld_a_bc:
         /**
@@ -128,6 +136,7 @@ int fetch(z80_info_s *status, op_code opcode)
         */
         A = *(&BC);
         status->elapsed_cycles += 7;
+        break;
     }
 }
 
