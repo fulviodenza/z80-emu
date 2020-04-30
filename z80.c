@@ -23,6 +23,7 @@ int fetch(z80_info_s *status, op_code opcode)
         break;
 
         case ld_bc_xx:
+        printf("Ciao");
         /**
          * ld_bc_xx stores xx 
          * (16 bit register) into BC
@@ -147,5 +148,6 @@ int main(){
     memory[2] = 0xFE;
 
     emulation(memory[0]);
+    printf("%d\n",BC);
 }
 
