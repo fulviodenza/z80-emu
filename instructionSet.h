@@ -24,11 +24,11 @@ typedef enum op_code{
     ex_af_af1 = 0x08, //done
     add_hl_bc = 0x09, //done
     ld_a_bc = 0x0A, //done
-    dec_bc = 0x0B,
-    inc_c = 0x0C,
-    dec_c = 0x0D,
-    ld_c_x = 0x0E,
-    rrca = 0x0F,
+    dec_bc = 0x0B, //done
+    inc_c = 0x0C, //done
+    dec_c = 0x0D, //done
+    ld_c_x = 0x0E, //done
+    rrca = 0x0F, //done
     djnz_x = 0x10,
     ld_de_xx = 0x11,
     ld_de_a = 0x12,
