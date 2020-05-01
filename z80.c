@@ -137,6 +137,45 @@ int fetch(z80_info_s *status, op_code opcode)
         A = *(&BC);
         status->elapsed_cycles += 7;
         break;
+
+        case dec_bc:
+        /**
+         * Substracts one from BC
+        */
+        BC--;
+        status->elapsed_cycles += 6;
+        break;
+
+        case inc_c:
+        /**
+         * Adds one to C
+        */
+        C++;
+        status->elapsed_cycles += 4;
+        break;
+
+        case dec_c:
+        /**
+         * Subtracts one to C
+        */
+        C--;
+        status->elapsed_cycles += 4;
+        break;
+
+        case ld_c_x:
+        /**
+         * Loads x to C
+        */
+        C = memory[status->m_pc++];
+        status->elapsed_cycles += 7;
+        break;
+
+        case rrca:
+        /**
+         * The contents of A are rotated right one
+         * bit position. The contents of bit 0 are copied
+         * to the carry flag and bit 7
+        */ 
     }
 }
 
@@ -152,11 +191,12 @@ int emulation (int opcode)
 
 int main(){
 
-    memory[0] = 0x01;
+    memory[0] = 0x0E;
     memory[1] = 0xFF;
     memory[2] = 0xFE;
-
+    C = 5;
+    printf("%d\n",C);
     emulation(memory[0]);
-    printf("%d\n",BC);
+    printf("%d\n",C);
 }
 
