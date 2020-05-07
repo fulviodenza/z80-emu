@@ -220,21 +220,13 @@ int main(int argc, char *argv[]){
 
     char *file_name = argv[1];
     FILE *fd; 
-    int c, len = 0;
+    long filelen;
 
-    fd = fopen(file_name, "r"); //read mode
-    c = fgetc(fd);
+    fd = fopen(file_name, "rb"); //read mode
+    fseek(fd, 0, SEEK_END);
+    filelen = ftell(fd);
+    rewind(fd);
 
-    if(fd == NULL) {
-
-        perror("Error while opening the file");
-        exit(EXIT_FAILURE);
-    }
-
-    while(c != EOF){
-
-        memory[len] = c;
-        len++;
-        c = fgetc(fd);
-    }
+    fread(memory, 1, filelen, fd);
+    fclose(fd);
 }
