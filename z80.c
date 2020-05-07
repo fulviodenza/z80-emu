@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <string.h>
 
 #include "z80.h"
 #include "instructionSet.h"
@@ -175,7 +176,17 @@ int fetch(z80_info_s *status, op_code opcode)
          * The contents of A are rotated right one
          * bit position. The contents of bit 0 are copied
          * to the carry flag and bit 7
-        */ 
+        */
+        shifted = A >> 1;
+        //Flags affections
+        status->flags.c = A << 7;
+        status->flags.h = 0;
+        status->flags.n = 0;
+        //rotation
+        A = shifted | status->flags.c;
+        status->elapsed_cycles += 4;
+        break;
+        
     }
 }
 
@@ -189,8 +200,9 @@ int emulation (int opcode)
     fetch(&status, opcode);
 }
 
-int main(){
+int main(int argc, char *argv[]){
 
+    /*
     memory[0] = 0x0E;
     memory[1] = 0xFF;
     memory[2] = 0xFE;
@@ -198,5 +210,37 @@ int main(){
     printf("%d\n",C);
     emulation(memory[0]);
     printf("%d\n",C);
+    */
+
+    if(argc == 1) {
+
+        fprintf(stderr, "usage: ./a.out file\n");
+        exit(EXIT_FAILURE);
+    }
+
+    char *file_name = argv[1];
+    FILE *fd; 
+    int c, len = 0;
+
+    fd = fopen(file_name, "r"); //read mode
+    c = fgetc(fd);
+
+    if(fd == NULL) {
+
+        perror("Error while opening the file");
+        exit(EXIT_FAILURE);
+    }
+
+    while(c != EOF){
+
+        memory[len] = c;
+        len++;
+        c = fgetc(fd);
+    }
+    
+    /*for(int i = 0; i < 9; i++){
+
+        printf("%d\n", memory[i]);
+    }*/
 }
 
