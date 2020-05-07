@@ -237,10 +237,4 @@ int main(int argc, char *argv[]){
         len++;
         c = fgetc(fd);
     }
-    
-    /*for(int i = 0; i < 9; i++){
-
-        printf("%d\n", memory[i]);
-    }*/
 }
-
