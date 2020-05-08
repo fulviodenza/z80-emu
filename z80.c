@@ -18,7 +18,7 @@ int fetch(z80_info_s *status, op_code opcode)
 
         case nop:
         /**
-         * nop does absoluterly nothing
+         * nop does absolutely nothing
         */
         status->elapsed_cycles+=4;
         break;
@@ -190,14 +190,16 @@ int fetch(z80_info_s *status, op_code opcode)
     }
 }
 
-int emulation (int opcode) 
+int emulation (int len) 
 {
     status.m_pc = 0;
     status.elapsed_cycles = 0;
     status.m_sp = 32767;
     
-    //while(1)
-    fetch(&status, opcode);
+    while(len > 0){
+        fetch(&status, memory[status.m_pc]);
+        len--;
+    }
 }
 
 int main(int argc, char *argv[]){
@@ -229,4 +231,11 @@ int main(int argc, char *argv[]){
 
     fread(memory, 1, filelen, fd);
     fclose(fd);
+
+    for(int i = 0; i < filelen; i++){
+
+        printf("memory: %d\n", memory[i]);
+    }
+
+    emulation(filelen);
 }
