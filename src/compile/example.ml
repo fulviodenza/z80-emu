@@ -1,5 +1,3 @@
-(*Model file for file manipulation in Ocaml*)
-
 open Printf
   
 let file = "bin.z80"
@@ -12,7 +10,7 @@ let () =
   close_out oc;                (* flush and close the channel *)
   
   (* Read file and display the first line *)
-  let ic = open_in file in
+  let ic = open_in Sys.argv.(1) in
   try 
     let line = input_line ic in  (* read line from in_channel and discard \n *)
     print_endline line;          (* write the result to stdout *)

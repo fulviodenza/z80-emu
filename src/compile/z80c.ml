@@ -1,5 +1,10 @@
 (*This is a pseudocode for Ocaml compiler*)
 
+open Printf
+
+let in_channel = open_in Sys.argv.(1) (*Takes first argument from command line*)
+let fileOut = "bin.z80"
+
 let match_ld str = 
     match str with 
         "a" -> ( 
