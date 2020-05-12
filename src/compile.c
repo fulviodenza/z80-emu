@@ -39,6 +39,30 @@ int main(int argc, char *argv[]) {
     fclose(output_file);
 }
 
-uint8_t encode(op_code opcode){
+//THIS IS JUST PSEUDOCODE
+uint8_t encode(char *str){
 
+    switch (str)
+    {
+    case "nop":
+        return 0x00;
+        break;
+    case "ld_bc_xx":
+        return 0x01;
+        break;
+    case "ld_bc_a":
+        return 0x02;
+        break;
+    case "ld_bc_a":
+        return 0x02;
+        break;
+    case "inc_bc":
+        return 0x03; //done
+        break;
+    case "inc_b":
+        return 0x04;
+        break;   
+    default:
+        break;
+    }
 }
