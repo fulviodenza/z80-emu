@@ -42,8 +42,9 @@ int main(int argc, char *argv[]) {
 //THIS IS JUST PSEUDOCODE
 uint8_t encode(char *str){
 
-    switch (str)
-    {
+    uint8_t x = atoi(str);
+
+    switch (x) {
     case "nop":
         return 0x00;
         break;
