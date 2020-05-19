@@ -7,6 +7,7 @@ and the basic idea behind an emulator.
 To test this project you should first compile and then try it with
 
 ```console
+git clone https://github.com/fulviodenza/z80-emu.git
 cd src
 gcc z80.c
 ./a.out ../tests/example.z80
