@@ -10,8 +10,6 @@ z80_info_s status;
 
 int fetch(z80_info_s *status, op_code opcode) 
 {
-
-    uint16_t temp;
     uint16_t shifted;
 
     switch(memory[status->m_pc++]) { //switch memory[m_pc]
@@ -28,10 +26,7 @@ int fetch(z80_info_s *status, op_code opcode)
          * ld_bc_xx stores xx 
          * (16 bit register) into BC
         */
-        temp = memory[status->m_pc++];
-        temp<<=8;
-        temp = temp | memory[status->m_pc++];
-        BC = temp;
+        BC = memory[status->m_pc++] << 8 | memory[status->m_pc++];
         status->elapsed_cycles+=10;
         break;
         
@@ -80,8 +75,7 @@ int fetch(z80_info_s *status, op_code opcode)
         /**
          * Loads x into b.
         */
-        temp = memory[status->m_pc++];
-        B = temp;
+        B = memory[status->m_pc++];
         status->elapsed_cycles += 7;
         break;
 
@@ -106,6 +100,7 @@ int fetch(z80_info_s *status, op_code opcode)
          * Exchanges the 16-bit
          * contents of af and af'
         */
+        uint16_t temp;
         temp = AF;
         AF = AF1;
         AF1 = temp;
